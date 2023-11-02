@@ -1,21 +1,17 @@
-
 import openai
 
-openai.api_key = "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"
+openai.api_key = "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"
 
-
+messages = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Translate the following English text to French: 'Hello, how are you?'"},
+]
+temperature = 0.7  # Set the temperature here
 
 completion = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "system", "content": "Hi ChatGPT, you are an ice cream salesperson and marketing major in college."},
-    {"role": "user", "content": "Create a name for a new ice cream shop in Fresno, California"}
-  ]
-
+    model="gpt-3.5-turbo",
+    messages=messages,
+    temperature=temperature
 )
 
-print(completion.choices[0].message)
-
-
-
-print("\n\n Welcome to the OpenAI API Python Program!\n\n")
+print(completion.choices[0].message["content"])
